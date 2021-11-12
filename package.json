@@ -14,7 +14,8 @@
     "prettier": "prettier --write script/"
   },
   "files": [
-    "lib"
+    "lib",
+    "types"
   ],
   "lint-staged": {
     "**/*.js": "npm run lint",
