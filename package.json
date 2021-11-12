@@ -2,6 +2,7 @@
   "name": "pycn",
   "version": "1.0.0",
   "main": "./lib/py-data.js",
+  "types": "./types/index.d.ts",
   "scripts": {
     "init": "node ./scripts/init.js",
     "generator": "node ./scripts/generator.js",
