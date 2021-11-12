@@ -9,7 +9,8 @@
     "lint": "eslint scripts/",
     "lint:fix": "eslint scripts/ --fix",
     "lint-staged": "lint-staged",
-    "commit": "cz"
+    "commit": "cz",
+    "prettier": "prettier --write script/"
   },
   "files": [
     "lib"
@@ -23,17 +24,32 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
+  "keywords": [
+    "pycn",
+    "china",
+    "pinyin",
+    "china-area"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caijf/pycn.git"
+  },
+  "bugs": {
+    "url": "https://github.com/caijf/pycn/issues"
+  },
+  "homepage": "https://github.com/caijf/pycn#readme",
   "author": "caijf",
   "license": "MIT",
   "devDependencies": {
     "@commitlint/cli": "^14.1.0",
-    "@commitlint/config-angular": "^13.2.0",
+    "@commitlint/config-conventional": "^14.1.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.2.0",
     "form-data-encoder": "^1.7.0",
     "formdata-node": "^4.3.1",
     "fs-extra": "^10.0.0",
     "husky": "^7.0.0",
+    "jest": "^27.3.1",
     "lint-staged": "^11.2.6",
     "node-fetch": "^3.1.0",
     "pinyin4js": "^1.3.18",
