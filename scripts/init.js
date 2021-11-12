@@ -38,6 +38,7 @@ const fetchData = () => fetch(url, options);
 const transformPy = (district) => {
   let newDistrict = {};
   if (typeof district === 'object' && district.name) {
+    // eslint-disable-next-line no-unused-vars
     const { citycode, center, districts, ...rest } = district;
     newDistrict = {
       ...rest,
