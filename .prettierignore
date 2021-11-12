@@ -13,3 +13,4 @@ LICENSE
 *.gif
 *.bmp
 yarn-error.log
+lib/

@@ -20,15 +20,15 @@ type CascadeDistrict = SingleDistrict & {
 };
 ```
 
-| 文件模块                     | 数据类型            | 描述          |
-| ---------------------------- | ------------------- | ------------- |
-| py-data.js                   | `CascadeDistrict[]` | 省/市/区/街道 |
-| py-province-city-district.js | `CascadeDistrict[]` | 省/市/区      |
-| py-province-city.js          | `CascadeDistrict[]` | 省/市         |
-| py-province.js               | `SingleDistrict[]`  | 省            |
-| py-city.js                   | `SingleDistrict[]`  | 市            |
-| py-district.js               | `SingleDistrict[]`  | 区            |
-| py-street.js                 | `SingleDistrict[]`  | 街道          |
+| 文件模块 | 数据类型 | 描述 |
+| --- | --- | --- |
+| [py-data.js](https://github.com/caijf/pycn/tree/main/lib/py-data.js) | `CascadeDistrict[]` | 省/市/区/街道 |
+| [py-province-city-district.js](https://github.com/caijf/pycn/tree/main/lib/py-province-city-district.js) | `CascadeDistrict[]` | 省/市/区 |
+| [py-province-city.js](https://github.com/caijf/pycn/tree/main/lib/py-province-city.js) | `CascadeDistrict[]` | 省/市 |
+| [py-province.js](https://github.com/caijf/pycn/tree/main/lib/py-province.js) | `SingleDistrict[]` | 省 |
+| [py-city.js](https://github.com/caijf/pycn/tree/main/lib/py-city.js) | `SingleDistrict[]` | 市 |
+| [py-district.js](https://github.com/caijf/pycn/tree/main/lib/py-district.js) | `SingleDistrict[]` | 区 |
+| [py-street.js](https://github.com/caijf/pycn/tree/main/lib/py-street.js) | `SingleDistrict[]` | 街道 |
 
 ## 安装
 
