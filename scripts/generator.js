@@ -34,7 +34,7 @@ const LEVEL_FLAG = {
   CITY: 'city',
   DISTRICT: 'district',
   STREET: 'street'
-}
+};
 
 const province = [];
 const city = [];
@@ -44,7 +44,7 @@ let province_city = [];
 let province_city_district = [];
 
 const trans = (dists) => {
-  dists.forEach(item => {
+  dists.forEach((item) => {
     const { districts, level, ...rest } = item;
     if (level === LEVEL_FLAG.PROVINCE) {
       province.push(rest);
@@ -59,11 +59,11 @@ const trans = (dists) => {
     if (Array.isArray(districts) && districts.length > 0) {
       trans(districts);
     }
-  })
-}
+  });
+};
 
 const transCascade = (dists, untilLevel) => {
-  return dists.map(item => {
+  return dists.map((item) => {
     const { districts, level, ...rest } = item;
     if (level === untilLevel) {
       return rest;
@@ -73,15 +73,15 @@ const transCascade = (dists, untilLevel) => {
       return {
         ...rest,
         districts: transCascade(districts, untilLevel)
-      }
+      };
     }
 
     return {
       ...rest,
       districts
     };
-  })
-}
+  });
+};
 
 trans(pyData);
 
@@ -122,8 +122,12 @@ const run = async () => {
   await createUMD(PY_DISTRICT_FILE, PY_DISTRICT_MODULE, JSON.stringify(district));
   await createUMD(PY_STREET_FILE, PY_STREET_MODULE, JSON.stringify(street));
   await createUMD(PY_PROVINCE_CITY_FILE, PY_PROVINCE_CITY_MODULE, JSON.stringify(province_city));
-  await createUMD(PY_PROVINCE_CITY_DISTRICT_FILE, PY_PROVINCE_CITY_DISTRICT_MODULE, JSON.stringify(province_city_district));
+  await createUMD(
+    PY_PROVINCE_CITY_DISTRICT_FILE,
+    PY_PROVINCE_CITY_DISTRICT_MODULE,
+    JSON.stringify(province_city_district)
+  );
   await createUMD(PY_DATA_FILE, PY_DATA_MODULE, JSON.stringify(pyData));
-}
+};
 
 run();

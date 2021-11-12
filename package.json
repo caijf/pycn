@@ -11,8 +11,12 @@
     "lint-staged": "lint-staged",
     "commit": "cz"
   },
+  "files": [
+    "lib"
+  ],
   "lint-staged": {
-    "**/*.js": "npm run lint"
+    "**/*.js": "npm run lint",
+    "**/*.{js,md}": "prettier --write"
   },
   "config": {
     "commitizen": {

@@ -16,11 +16,13 @@ const encoder = new FormDataEncoder(form);
 
 // 生成随机IP， 赋值给 X-Forwarded-For
 function getRandomIP() {
-  return Array.from(Array(4)).map(() => parseInt(Math.random() * 255)).join('.')
+  return Array.from(Array(4))
+    .map(() => parseInt(Math.random() * 255))
+    .join('.');
 }
 
 const options = {
-  method: "post",
+  method: 'post',
   headers: {
     ...encoder.headers,
     'X-Forwarded-For': getRandomIP(),
@@ -31,7 +33,7 @@ const options = {
       'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2924.87 Safari/537.36'
   },
   body: Readable.from(encoder)
-}
+};
 
 const fetchData = () => fetch(url, options);
 
@@ -49,7 +51,7 @@ const transformPy = (district) => {
     }
   }
   return newDistrict;
-}
+};
 
 const DATA_DIR = path.join(__dirname, '../data');
 const DATA_FILE = path.join(DATA_DIR, 'data.json');
@@ -78,6 +80,6 @@ const run = async () => {
   } catch (err) {
     console.log(err);
   }
-}
+};
 
 run();
