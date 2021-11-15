@@ -7,7 +7,7 @@ const LIB_DIR = path.join(__dirname, '../lib');
 const createType = async (fileName, moduleName, type = 'single') => {
   const retType = type === 'single' ? 'SingleDistrict' : 'CascadeDistrict';
   const code = `import { ${retType} } from '../types/interface';
-declare const ${moduleName}: ${retType};
+declare const ${moduleName}: ${retType}[];
 export default ${moduleName};
 `;
   const retFileName = fileName.indexOf('.d.ts') > -1 ? fileName : `${fileName}.d.ts`;
