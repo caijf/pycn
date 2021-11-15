@@ -7,6 +7,8 @@
 - 字母索引城市列表选择
 - 拼音搜索省/市/区/街道数据
 
+> 如果不使用拼音，需要注意一些多音字处理，比如 _亳（bo，不是 hao）州市、厦（xia，不是 sha）门、长（chang，不是 zhang）春市_ ...
+
 数据来源：[高德地图-行政区域查询]
 
 ## 数据格式
@@ -74,6 +76,18 @@ import pyDistrict from 'pycn/lib/py-district';
 
 // 街道
 import pyStreet from 'pycn/lib/py-street';
+```
+
+## 示例
+
+- 所有城市按字母排序
+
+```typescript
+import pyCity from 'pycn/lib/py-city';
+
+const result = pyCity.sort((a, b) => a.py.localeCompare(b.py, 'zh'));
+
+console.log(result);
 ```
 
 ## 参考
