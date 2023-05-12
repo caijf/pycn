@@ -4,6 +4,7 @@ const { Readable } = require('stream');
 const { FormDataEncoder } = require('form-data-encoder');
 const pinyin4js = require('pinyin4js');
 const { FormData } = require('formdata-node');
+// @ts-ignore
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
 const url = 'https://lbs.amap.com/service/api/restapi?keywords=中国&subdistrict=4&extensions=base';
@@ -17,7 +18,7 @@ const encoder = new FormDataEncoder(form);
 // 生成随机IP， 赋值给 X-Forwarded-For
 function getRandomIP() {
   return Array.from(Array(4))
-    .map(() => parseInt(Math.random() * 255))
+    .map(() => parseInt(Math.random() * 255 + ''))
     .join('.');
 }
 
@@ -37,7 +38,7 @@ const options = {
 
 const fetchData = () => fetch(url, options);
 
-const transformPy = (district) => {
+const transformPy = (/** @type {any} */ district) => {
   let newDistrict = {};
   if (typeof district === 'object' && district.name) {
     // eslint-disable-next-line no-unused-vars,@typescript-eslint/no-unused-vars
@@ -53,9 +54,9 @@ const transformPy = (district) => {
   return newDistrict;
 };
 
-const DATA_DIR = path.join(__dirname, '../data');
-const DATA_FILE = path.join(DATA_DIR, 'data.json');
-const PY_DATA_FILE = path.join(DATA_DIR, 'py-data.json');
+const ORIGIN_DIR = path.join(__dirname, '../origin');
+const DATA_FILE = path.join(ORIGIN_DIR, 'data.json');
+const PY_DATA_FILE = path.join(ORIGIN_DIR, 'py-data.json');
 
 const run = async () => {
   try {
@@ -64,16 +65,18 @@ const run = async () => {
     const json = await response.json();
     const text = JSON.stringify(json);
 
+    // @ts-ignore
     if (json?.status !== '1') {
       throw json;
     }
 
-    await fse.ensureDir(DATA_DIR);
+    await fse.ensureDir(ORIGIN_DIR);
 
     // 写入data/data.json
     await fse.outputFile(DATA_FILE, text);
 
     // 写入data/py-data.json
+    // @ts-ignore
     const districts = json.districts[0].districts;
     const pyResult = districts.map(transformPy);
     await fse.outputFile(PY_DATA_FILE, JSON.stringify(pyResult));
