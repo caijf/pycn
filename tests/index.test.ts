@@ -1,10 +1,10 @@
-const pyData = require('../lib/py-data');
-const pyProvinceCityDistrict = require('../lib/py-province-city-district');
-const pyProvinceCity = require('../lib/py-province-city');
-const pyProvince = require('../lib/py-province');
-const pyCity = require('../lib/py-city');
-const pyDistrict = require('../lib/py-district');
-const pyStreet = require('../lib/py-street');
+import pyData from '../src/py-data';
+import pyProvinceCityDistrict from '../src/py-province-city-district';
+import pyProvinceCity from '../src/py-province-city';
+import pyProvince from '../src/py-province';
+import pyCity from '../src/py-city';
+import pyDistrict from '../src/py-district';
+import pyStreet from '../src/py-street';
 
 describe('base', () => {
   it('should be defined', () => {

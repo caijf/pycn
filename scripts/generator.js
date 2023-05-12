@@ -2,47 +2,18 @@ const path = require('path');
 const fse = require('fs-extra');
 const pyData = require('../data/py-data.json');
 
-const LIB_DIR = path.join(__dirname, '../lib');
+const SRC_DIR = path.join(__dirname, '../src');
 
-const createType = async (fileName, moduleName, type = 'single') => {
-  const retType = type === 'single' ? 'SingleDistrict' : 'CascadeDistrict';
-  const code = `import { ${retType} } from '../types/interface';
-declare const ${moduleName}: ${retType}[];
-export default ${moduleName};
-`;
-  const retFileName = fileName.indexOf('.d.ts') > -1 ? fileName : `${fileName}.d.ts`;
-  const filePath = path.join(LIB_DIR, retFileName);
+const createSource = async (fileName, moduleName, exportsCode) => {
+  const code = `const ${moduleName} = ${exportsCode};
+export default ${moduleName};`;
+
+  const retFileName = `${fileName}.ts`;
+  const filePath = path.join(SRC_DIR, retFileName);
 
   try {
-    await fse.ensureDir(LIB_DIR);
+    await fse.ensureDir(SRC_DIR);
     await fse.outputFile(filePath, code);
-    console.log(`done! ${filePath}`);
-  } catch (err) {
-    console.log(`error! ${filePath}`);
-    console.log(err);
-  }
-};
-
-const createUMD = async (fileName, moduleName, exportsCode, type = 'single') => {
-  const code = `(function (root, factory) {
-  if (typeof exports === 'object' && typeof module !== 'undefined') {
-    module.exports = factory();
-  } else if (typeof define === 'function' && define.amd) {
-    define([], factory);
-  } else {
-    root.${moduleName} = factory();
-  }
-}(this, function () {
-  return ${exportsCode};
-}));`;
-
-  const retFileName = fileName.indexOf('.js') > -1 ? fileName : `${fileName}.js`;
-  const filePath = path.join(LIB_DIR, retFileName);
-
-  try {
-    await fse.ensureDir(LIB_DIR);
-    await fse.outputFile(filePath, code);
-    await createType(fileName, moduleName, type);
     console.log(`done! ${filePath}`);
   } catch (err) {
     console.log(`error! ${filePath}`);
@@ -145,23 +116,33 @@ const PY_DATA_FILE = 'py-data';
 const PY_DATA_TYPE = 'cascade';
 
 const run = async () => {
-  await createUMD(PY_PROVINCE_FILE, PY_PROVINCE_MODULE, JSON.stringify(province), PY_PROVINCE_TYPE);
-  await createUMD(PY_CITY_FILE, PY_CITY_MODULE, JSON.stringify(city), PY_CITY_TYPE);
-  await createUMD(PY_DISTRICT_FILE, PY_DISTRICT_MODULE, JSON.stringify(district), PY_DISTRICT_TYPE);
-  await createUMD(PY_STREET_FILE, PY_STREET_MODULE, JSON.stringify(street), PY_STREET_TYPE);
-  await createUMD(
+  await createSource(
+    PY_PROVINCE_FILE,
+    PY_PROVINCE_MODULE,
+    JSON.stringify(province),
+    PY_PROVINCE_TYPE
+  );
+  await createSource(PY_CITY_FILE, PY_CITY_MODULE, JSON.stringify(city), PY_CITY_TYPE);
+  await createSource(
+    PY_DISTRICT_FILE,
+    PY_DISTRICT_MODULE,
+    JSON.stringify(district),
+    PY_DISTRICT_TYPE
+  );
+  await createSource(PY_STREET_FILE, PY_STREET_MODULE, JSON.stringify(street), PY_STREET_TYPE);
+  await createSource(
     PY_PROVINCE_CITY_FILE,
     PY_PROVINCE_CITY_MODULE,
     JSON.stringify(province_city),
     PY_PROVINCE_CITY_TYPE
   );
-  await createUMD(
+  await createSource(
     PY_PROVINCE_CITY_DISTRICT_FILE,
     PY_PROVINCE_CITY_DISTRICT_MODULE,
     JSON.stringify(province_city_district),
     PY_PROVINCE_CITY_DISTRICT_TYPE
   );
-  await createUMD(PY_DATA_FILE, PY_DATA_MODULE, JSON.stringify(pyData), PY_DATA_TYPE);
+  await createSource(PY_DATA_FILE, PY_DATA_MODULE, JSON.stringify(pyData), PY_DATA_TYPE);
 };
 
 run();
