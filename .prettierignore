@@ -22,5 +22,11 @@ yarn-error.log
 *.bmp
 
 /dist
+/cjs
+/lib
+/es
+/umd
+/data
+/src
 /build
 /public
