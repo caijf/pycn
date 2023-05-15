@@ -1,8 +1,9 @@
 {
   "name": "pycn",
   "version": "2.0.0",
-  "main": "./cjs/py-data.js",
-  "module": "./es/py-data.js",
+  "main": "cjs/py-data.js",
+  "module": "es/py-data.js",
+  "unpkg": "umd/py-data.js",
   "scripts": {
     "test": "jest --verbose",
     "build": "npm run build:module && npm run build:umd",

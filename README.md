@@ -1,5 +1,7 @@
 # pycn
 
+[![npm][npm]][npm-url] ![GitHub][license]
+
 中国行政区域（省/市/区/街道）拼音，支持 `es` `cjs` `umd` 格式，方便 node/es6/浏览器使用。
 
 适用以下场景：
@@ -15,13 +17,13 @@
 
 | 文件模块 | 描述 |
 | --- | --- |
-| [py-data.js](https://github.com/caijf/pycn/tree/main/es/py-data.js) | 省/市/区/街道 |
-| [py-province-city-district.js](https://github.com/caijf/pycn/tree/main/es/py-province-city-district.js) | 省/市/区 |
-| [py-province-city.js](https://github.com/caijf/pycn/tree/main/es/py-province-city.js) | 省/市 |
-| [py-province.js](https://github.com/caijf/pycn/tree/main/es/py-province.js) | 省 |
-| [py-city.js](https://github.com/caijf/pycn/tree/main/es/py-city.js) | 市 |
-| [py-district.js](https://github.com/caijf/pycn/tree/main/es/py-district.js) | 区 |
-| [py-street.js](https://github.com/caijf/pycn/tree/main/es/py-street.js) | 街道 |
+| [py-data.ts](https://github.com/caijf/pycn/blob/main/src/py-data.ts) | 省/市/区/街道 |
+| [py-province-city-district.ts](https://github.com/caijf/pycn/blob/main/src/py-province-city-district.ts) | 省/市/区 |
+| [py-province-city.ts](https://github.com/caijf/pycn/blob/main/src/py-province-city.ts) | 省/市 |
+| [py-province.ts](https://github.com/caijf/pycn/blob/main/src/py-province.ts) | 省 |
+| [py-city.ts](https://github.com/caijf/pycn/blob/main/src/py-city.ts) | 市 |
+| [py-district.ts](https://github.com/caijf/pycn/blob/main/src/py-district.ts) | 区 |
+| [py-street.ts](https://github.com/caijf/pycn/blob/main/src/py-street.ts) | 街道 |
 
 ## 安装
 
@@ -81,3 +83,6 @@ console.log(result);
 - [高德地图-行政区域查询]
 
 [高德地图-行政区域查询]: https://lbs.amap.com/api/webservice/guide/api/district/
+[npm]: https://img.shields.io/npm/v/pycn.svg
+[npm-url]: https://npmjs.com/package/pycn
+[license]: https://img.shields.io/github/license/caijf/pycn.svg
