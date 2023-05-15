@@ -1,6 +1,6 @@
 {
   "name": "pycn",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "main": "cjs/py-data.js",
   "module": "es/py-data.js",
   "unpkg": "umd/py-data.js",
