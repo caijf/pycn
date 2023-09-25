@@ -29,8 +29,16 @@
 
 - node/es
 
-```bash
+```shell
 npm install pycn
+```
+
+```shell
+yarn add pycn
+```
+
+```shell
+pnpm add pycn
 ```
 
 - 浏览器
